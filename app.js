@@ -9,7 +9,7 @@ import ReviewsController from "./reviews/reviews-controller.js";
 import mongoose from "mongoose";
 import FollowsController from "./follows/follows-controller.js";
 import CourseController from "./api/course-controller.js";
-import HelloController from "./hello-controller.js";
+import HelloController from "./hello/hello-controller.js";
 
 const options = {
     useNewUrlParser: true,
@@ -46,3 +46,4 @@ app.use(express.json())
 HelloController(app);
 CourseController(app)
 app.listen(process.env.PORT || 4000);
+
