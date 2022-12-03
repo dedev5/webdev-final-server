@@ -8,6 +8,8 @@ import SessionController from "./session-controller.js";
 import ReviewsController from "./reviews/reviews-controller.js";
 import mongoose from "mongoose";
 import FollowsController from "./follows/follows-controller.js";
+import CourseController from "./api/course-controller.js";
+import HelloController from "./hello-controller.js";
 
 const options = {
     useNewUrlParser: true,
@@ -19,24 +21,28 @@ const options = {
     family: 4
 }
 
-mongoose.connect('mongodb://localhost:27017/cs4550-fa22', options)
+// mongoose.connect('mongodb://localhost:27017/cs4550-fa22', options)
 
 const app = express();
-app.use(cors({
-    credentials: true,
-    origin: 'http://localhost:3000'
-}))
+app.use(cors(
+    // {
+    // credentials: true,
+    // origin: 'http://localhost:3000'
+    // }
+))
 app.use(session({
-    secret: 'should be an environment variable',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
 }))
 app.use(express.json())
-MoviesController(app)
-LikesController(app)
-UsersController(app)
-SessionController(app)
-ReviewsController(app)
-FollowsController(app)
-app.listen(4000)
+// MoviesController(app)
+// LikesController(app)
+// UsersController(app)
+// SessionController(app)
+// ReviewsController(app)
+// FollowsController(app)
+HelloController(app);
+CourseController(app)
+app.listen(process.env.PORT || 4000);
