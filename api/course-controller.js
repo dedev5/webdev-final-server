@@ -1,4 +1,4 @@
-import * as dao from "./reviews-dao.js"
+
 import * as movieDao from "../movies/movies-dao.js";
 
 let result = ['No results received yet']
@@ -15,7 +15,7 @@ const CourseController = (app) => {
         res.send(result)
     }
 
-    app.post('/api/recv-courses', createReview)
+    app.post('/api/recv-courses', saveCourses)
     app.get('/api/courses', getMovies)
 }
 
