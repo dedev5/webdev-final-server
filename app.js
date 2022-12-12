@@ -16,19 +16,9 @@ const options = {
 
 // mongoose.connect('mongodb://localhost:27017/cs4550-fa22', options)
 
-const app = express();
-app.use(cors(
-    // {
-    // credentials: true,
-    // origin: 'http://localhost:3000'
-    // }
-))
-app.use(session({
-    secret: "foobar",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
-}))
+const app = express()
+app.use(cors())
+app.use(express.json());
 app.use(express.json())
 // ClassesController(app)
 // LikesController(app)
@@ -39,4 +29,3 @@ app.use(express.json())
 HelloController(app);
 CourseController(app)
 app.listen(process.env.PORT || 4000);
-
