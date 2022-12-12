@@ -1,6 +1,5 @@
 import express from 'express'
 import cors from 'cors'
-import session from 'express-session'
 import CourseController from "./api/course-controller.js";
 import HelloController from "./hello/hello-controller.js";
 
