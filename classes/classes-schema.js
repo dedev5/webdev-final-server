@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const moviesSchema = mongoose.Schema({
+const classesSchema = mongoose.Schema({
     title: {type: String, required: true},
     likes: {type: Number, default: 0},
     liked: {type: Boolean, default: false},
@@ -9,4 +9,4 @@ const moviesSchema = mongoose.Schema({
     genre: {type: String, enum: ['SCIFI', 'HORROR', 'COMEDY']}
 }, {collection: 'movies'})
 
-export default moviesSchema
+export default classesSchema

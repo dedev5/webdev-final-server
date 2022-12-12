@@ -1,9 +1,9 @@
-import * as movieDao from './movies-dao.js'
+import * as movieDao from './classes-dao.js'
 
 
 export const getMovies = () => movies;
 
-const MoviesController = (app) => {
+const ClassesController = (app) => {
 
     const createMovie   = async (req, res) => {
         const movie = req.body
@@ -43,4 +43,4 @@ const MoviesController = (app) => {
     app.delete('/movies/:mid', deleteMovie)
 }
 
-export default MoviesController;
+export default ClassesController;

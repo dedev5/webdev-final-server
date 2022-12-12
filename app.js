@@ -1,13 +1,6 @@
 import express from 'express'
 import cors from 'cors'
 import session from 'express-session'
-import MoviesController from "./movies/movies-controller.js";
-import LikesController from "./likes/likes-controller.js";
-import UsersController from "./users/users-controller.js";
-import SessionController from "./session-controller.js";
-import ReviewsController from "./reviews/reviews-controller.js";
-import mongoose from "mongoose";
-import FollowsController from "./follows/follows-controller.js";
 import CourseController from "./api/course-controller.js";
 import HelloController from "./hello/hello-controller.js";
 
@@ -37,7 +30,7 @@ app.use(session({
     cookie: { secure: false }
 }))
 app.use(express.json())
-// MoviesController(app)
+// ClassesController(app)
 // LikesController(app)
 // UsersController(app)
 // SessionController(app)
