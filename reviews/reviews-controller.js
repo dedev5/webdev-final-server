@@ -1,5 +1,5 @@
 import * as dao from "./reviews-dao.js"
-import {findReviewsByAuthor, findReviewsByMovie} from "./reviews-dao.js";
+import {findUserById} from "../users/users-dao.js";
 
 const ReviewsController = (app) => {
     const createReview = async (req, res) => {
@@ -9,18 +9,30 @@ const ReviewsController = (app) => {
         const actualReview = await dao.createReview(review)
         res.json(actualReview)
     }
-    const findReviewsByMovie = async (req, res) => {
-        const imdbID = req.params.imdbID
-        const reviews = await dao.findReviewsByMovie(imdbID)
+    const deleteReview = async (req, res) => {
+        const rid = req.params.rid
+        const status = await dao.deleteReview(rid);
+        res.json(status);
+    }
+    const findAllReviews = async (req, res) => {
+        const reviews = await dao.findAllReviews()
         res.json(reviews)
     }
-    const findReviewsByAuthor = async (req, res) => {
-        const author = req.params.author
-        const reviews = await dao.findReviewsByAuthor(author)
+    const findReviewsByCourse = async (req, res) => {
+        const courseId = req.params.cid
+        const reviews = await dao.findReviewsByCourse(courseId)
+        console.log(reviews)
+        res.json(reviews)
+    }
+    const findReviewsByUser = async (req, res) => {
+        const author = req.params.uid
+        const reviews = await dao.findReviewsByUser(author)
         res.json(reviews)
     }
     app.post('/api/reviews', createReview)
-    app.get('/api/movies/:imdbID/reviews', findReviewsByMovie)
-    app.get('/api/users/:author/reviews', findReviewsByAuthor)
+    app.get('/api/reviews', findAllReviews)
+    app.delete('/api/reviews/:rid', deleteReview)
+    app.get('/api/courses/:cid/reviews', findReviewsByCourse)
+    app.get('/api/users/:uid/reviews', findReviewsByUser)
 }
 export default ReviewsController

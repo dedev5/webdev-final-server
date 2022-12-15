@@ -1,4 +1,5 @@
 import * as userDao from './users-dao.js'
+import {updateUser} from "./users-dao.js";
 
 let currentUser = null
 
@@ -13,7 +14,14 @@ const UsersController = (app) => {
         const actualUser = await userDao.createUser(newUser)
         res.json(actualUser)
     }
-    const updateUser = () => {}
+
+    const updateUser = async (req, res) => {
+        const uid = req.params.uid
+        const updatedUser = req.body;
+        const actualUser = await userDao.updateUser(uid, updatedUser)
+        res.json(actualUser)
+    }
+
     const deleteUser = () => {}
 
     const register = async (req, res) => {
@@ -43,6 +51,7 @@ const UsersController = (app) => {
     }
 
     const logout = (req, res) => {
+        console.log("LOGOUT")
         req.session.destroy()
         res.sendStatus(200)
     }

@@ -1,5 +1,5 @@
 
-import * as movieDao from "../classes/classes-dao.js";
+import * as movieDao from "../courses/courses-dao.js";
 
 let result = ['No results received yet']
 

@@ -2,29 +2,35 @@ import express from 'express'
 import cors from 'cors'
 import CourseController from "./api/course-controller.js";
 import HelloController from "./hello/hello-controller.js";
+import ReviewsController from "./reviews/reviews-controller.js";
+import mongoose from "mongoose";
+import UsersController from "./users/users-controller.js";
+import CoursesController from "./courses/courses-controller.js";
+import session from 'express-session'
+import FollowsController from "./follows/follows-controller.js";
 
-const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 5000,
-    autoIndex: false,
-    maxPoolSize: 10,
-    socketTimeoutMS: 45000,
-    family: 4
-}
-
-// mongoose.connect('mongodb://localhost:27017/cs4550-fa22', options)
+mongoose.connect('mongodb://localhost:27017/tuiter')
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+}))
+
+app.use(session({
+    secret: 'colud be anything',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}))
+
 app.use(express.json());
-app.use(express.json())
-// ClassesController(app)
-// LikesController(app)
-// UsersController(app)
-// SessionController(app)
-// ReviewsController(app)
-// FollowsController(app)
+
 HelloController(app);
-CourseController(app)
-app.listen(process.env.PORT || 4000);
+CoursesController(app)
+ReviewsController(app);
+UsersController(app);
+FollowsController(app);
+
+
+app.listen(4000);

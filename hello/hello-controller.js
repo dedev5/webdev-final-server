@@ -6,7 +6,7 @@ const HelloController = (app) => {
         res.send('Life is good! Or is it?')
     });
     app.get('/', (req, res) => {
-        res.send('Welcome to Full Stack Development!')
+        res.send('Final Project API. Use /courses and /users')
     });
 }
 export default HelloController;
